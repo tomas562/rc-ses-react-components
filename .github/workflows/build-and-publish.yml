@@ -27,8 +27,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Lint
+        run: npm run lint
+
       - name: Build the library
-        run: npm run build:lib 
+        run: npm run build:lib
 
       - name: Publish to GitHub Packages
         run: npm publish --access public
