@@ -15,6 +15,7 @@ jobs:
     permissions:
         contents: read
         packages: write
+        checks: write
     steps:
       - name: Check out the repository
         uses: actions/checkout@v3
@@ -30,6 +31,17 @@ jobs:
 
       - name: Lint
         run: npm run lint
+
+      - name: Test
+        run: npm run test:run
+
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Test Results
+          path: coverage/junit.xml
+          reporter: java-junit
 
       - name: Build the library
         run: npm run build:lib
