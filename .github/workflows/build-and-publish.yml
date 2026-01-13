@@ -3,6 +3,7 @@ name: Build and Publish
 on:
   release:
     types: [published]
+  pull_request:
 
 env:
   REGISTRY: ghcr.io
@@ -27,10 +28,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Lint
+        run: npm run lint
+
       - name: Build the library
-        run: npm run build:lib 
+        run: npm run build:lib
 
       - name: Publish to GitHub Packages
+        if: github.event_name == 'release'
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
