@@ -3,6 +3,7 @@ name: Build and Publish
 on:
   release:
     types: [published]
+  pull_request:
 
 env:
   REGISTRY: ghcr.io
@@ -34,6 +35,7 @@ jobs:
         run: npm run build:lib
 
       - name: Publish to GitHub Packages
+        if: github.event_name == 'release'
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
