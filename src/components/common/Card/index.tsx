@@ -62,13 +62,21 @@ function RcSesCard({
   sx,
   ...cardProps
 }: RcSesCardProps) {
+  const actionsProps = slotProps?.actions
+  const contentProps = slotProps?.content
+  const descriptionProps = slotProps?.description
+  const headerProps = slotProps?.header
+  const leadingActionsProps = slotProps?.leadingActions
+  const titleProps = slotProps?.title
+  const trailingActionsProps = slotProps?.trailingActions
+
   const normalizedSx = normalizeSx(sx)
-  const normalizedTitleSx = normalizeSx(slotProps?.title?.sx)
-  const normalizedDescriptionSx = normalizeSx(slotProps?.description?.sx)
-  const normalizedContentSx = normalizeSx(slotProps?.content?.sx)
-  const normalizedActionsSx = normalizeSx(slotProps?.actions?.sx)
-  const normalizedLeadingActionsSx = normalizeSx(slotProps?.leadingActions?.sx)
-  const normalizedTrailingActionsSx = normalizeSx(slotProps?.trailingActions?.sx)
+  const normalizedTitleSx = normalizeSx(titleProps?.sx)
+  const normalizedDescriptionSx = normalizeSx(descriptionProps?.sx)
+  const normalizedContentSx = normalizeSx(contentProps?.sx)
+  const normalizedActionsSx = normalizeSx(actionsProps?.sx)
+  const normalizedLeadingActionsSx = normalizeSx(leadingActionsProps?.sx)
+  const normalizedTrailingActionsSx = normalizeSx(trailingActionsProps?.sx)
 
   const hasActions = Boolean(leadingActions || trailingActions)
 
@@ -85,11 +93,11 @@ function RcSesCard({
         ...normalizedSx,
       ]}
     >
-      <Stack {...slotProps?.header} spacing={0.5}>
+      <Stack {...headerProps} spacing={0.5}>
         <Typography
           color={palette.grey[900]}
           variant='h5'
-          {...slotProps?.title}
+          {...titleProps}
           sx={[
             {
               lineHeight: '1.75rem',
@@ -104,7 +112,7 @@ function RcSesCard({
           <Typography
             color={palette.grey[800]}
             variant='body2'
-            {...slotProps?.description}
+            {...descriptionProps}
             sx={[
               {
                 fontWeight: 300,
@@ -119,7 +127,7 @@ function RcSesCard({
       </Stack>
 
       <Box
-        {...slotProps?.content}
+        {...contentProps}
         sx={[
           {
             alignItems: 'center',
@@ -139,7 +147,7 @@ function RcSesCard({
 
       {hasActions && (
         <Stack
-          {...slotProps?.actions}
+          {...actionsProps}
           direction={{ xs: 'column', md: 'row' }}
           sx={[
             {
@@ -154,7 +162,7 @@ function RcSesCard({
         >
           {!!leadingActions && (
             <Stack
-              {...slotProps?.leadingActions}
+              {...leadingActionsProps}
               direction={{ xs: 'column', md: 'row' }}
               sx={[
                 {
@@ -175,7 +183,7 @@ function RcSesCard({
 
           {!!trailingActions && (
             <Stack
-              {...slotProps?.trailingActions}
+              {...trailingActionsProps}
               direction={{ xs: 'column', md: 'row' }}
               sx={[
                 {
