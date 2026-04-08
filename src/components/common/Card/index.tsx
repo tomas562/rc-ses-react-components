@@ -14,12 +14,24 @@ import { ReactNode } from 'react'
 
 import palette from '@/theme/palette'
 
+export type RcSesCardTestIds = {
+  root?: string
+  header?: string
+  title?: string
+  description?: string
+  content?: string
+  actions?: string
+  leadingActions?: string
+  trailingActions?: string
+}
+
 export type RcSesCardProps = Omit<CardProps, 'children' | 'title'> & {
   title: ReactNode
   description?: ReactNode
   children: ReactNode
   leadingActions?: ReactNode
   trailingActions?: ReactNode
+  testIds?: RcSesCardTestIds
   slotProps?: {
     actions?: StackProps
     content?: BoxProps
@@ -58,6 +70,7 @@ function RcSesCard({
   children,
   leadingActions,
   trailingActions,
+  testIds,
   slotProps,
   sx,
   ...cardProps
@@ -83,6 +96,7 @@ function RcSesCard({
   return (
     <MuiCard
       {...cardProps}
+      data-testid={testIds?.root}
       sx={[
         {
           display: 'flex',
@@ -93,9 +107,10 @@ function RcSesCard({
         ...normalizedSx,
       ]}
     >
-      <Stack {...headerProps} spacing={0.5}>
+      <Stack {...headerProps} data-testid={testIds?.header} spacing={0.5}>
         <Typography
           color={palette.grey[900]}
+          data-testid={testIds?.title}
           variant='h5'
           {...titleProps}
           sx={[
@@ -111,6 +126,7 @@ function RcSesCard({
         {!!description && (
           <Typography
             color={palette.grey[800]}
+            data-testid={testIds?.description}
             variant='body2'
             {...descriptionProps}
             sx={[
@@ -128,6 +144,7 @@ function RcSesCard({
 
       <Box
         {...contentProps}
+        data-testid={testIds?.content}
         sx={[
           {
             alignItems: 'center',
@@ -148,6 +165,7 @@ function RcSesCard({
       {hasActions && (
         <Stack
           {...actionsProps}
+          data-testid={testIds?.actions}
           direction={{ xs: 'column', md: 'row' }}
           sx={[
             {
@@ -163,6 +181,7 @@ function RcSesCard({
           {!!leadingActions && (
             <Stack
               {...leadingActionsProps}
+              data-testid={testIds?.leadingActions}
               direction={{ xs: 'column', md: 'row' }}
               sx={[
                 {
@@ -184,6 +203,7 @@ function RcSesCard({
           {!!trailingActions && (
             <Stack
               {...trailingActionsProps}
+              data-testid={testIds?.trailingActions}
               direction={{ xs: 'column', md: 'row' }}
               sx={[
                 {
