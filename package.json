@@ -31,7 +31,7 @@
     "lint:fix": "eslint --fix .",
     "storybook": "storybook dev -p 6006",
     "storybook-test": "test-storybook",
-    "storybook-build": "storybook build",
+    "storybook-build": "storybook build --output-dir storybook-static",
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage"
