@@ -62,13 +62,6 @@ WithImage.args = {
   image: (
     <Box sx={{ color: palette.grey[400], position: 'relative', display: 'inline-flex' }}>
       <MagnifyingGlassIcon size={64} fillColor={palette.grey[400]} />
-      <Box
-        sx={{
-          bottom: 2,
-          position: 'absolute',
-          right: 0,
-        }}
-      />
     </Box>
   ),
   children: <RcSesButton>Button</RcSesButton>,

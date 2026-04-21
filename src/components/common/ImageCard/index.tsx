@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import RcSesCard, { RcSesCardTestIds } from '@/components/common/Card'
+import RcSesCard, { RcSesCardProps, RcSesCardTestIds } from '@/components/common/Card'
 
 export type RcSesImageCardTestIds = Pick<
   RcSesCardTestIds,
@@ -13,6 +13,7 @@ export type RcSesImageCardProps = {
   description?: ReactNode
   button?: ReactNode
   testIds?: RcSesImageCardTestIds
+  slotProps?: RcSesCardProps['slotProps']
 }
 
 function RcSesImageCard({
@@ -21,6 +22,7 @@ function RcSesImageCard({
   description,
   button,
   testIds,
+  slotProps,
 }: RcSesImageCardProps) {
   return (
     <RcSesCard
@@ -28,11 +30,12 @@ function RcSesImageCard({
       contentBackground={false}
       description={description}
       image={image}
+      slotProps={slotProps}
       testIds={testIds}
       title={title}
       variant='elevation'
     >
-      {button ?? null}
+      {button}
     </RcSesCard>
   )
 }

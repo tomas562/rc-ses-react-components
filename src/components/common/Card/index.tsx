@@ -32,7 +32,7 @@ export type RcSesCardProps = Omit<CardProps, 'children' | 'title'> & {
   image?: ReactNode
   centered?: boolean
   contentBackground?: boolean
-  children: ReactNode
+  children?: ReactNode
   leadingActions?: ReactNode
   trailingActions?: ReactNode
   testIds?: RcSesCardTestIds
@@ -176,25 +176,27 @@ function RcSesCard({
         )}
       </Stack>
 
-      <Box
-        {...contentProps}
-        data-testid={testIds?.content}
-        sx={[
-          {
-            alignItems: 'center',
-            alignSelf: 'stretch',
-            ...(contentBackground ? { backgroundColor: palette.grey[100] } : {}),
-            borderRadius: '0.5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1.5rem',
-            justifyContent: 'center',
-          },
-          ...normalizedContentSx,
-        ]}
-      >
-        {children}
-      </Box>
+      {children != null && (
+        <Box
+          {...contentProps}
+          data-testid={testIds?.content}
+          sx={[
+            {
+              alignItems: 'center',
+              alignSelf: 'stretch',
+              ...(contentBackground ? { backgroundColor: palette.grey[100] } : {}),
+              borderRadius: '0.5rem',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1.5rem',
+              justifyContent: 'center',
+            },
+            ...normalizedContentSx,
+          ]}
+        >
+          {children}
+        </Box>
+      )}
 
       {hasActions && (
         <Stack
