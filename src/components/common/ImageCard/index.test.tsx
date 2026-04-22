@@ -34,6 +34,7 @@ describe('RcSesImageCard', () => {
 
     expect(screen.getByRole('img', { name: 'icon' })).toBeInTheDocument()
     expect(screen.getByText('Title only')).toBeInTheDocument()
+    expect(screen.queryByText('Description text')).not.toBeInTheDocument()
     expect(screen.queryByRole('button')).not.toBeInTheDocument()
   })
 

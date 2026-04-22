@@ -117,7 +117,7 @@ function RcSesCard({
         ...normalizedSx,
       ]}
     >
-      {!!image && (
+      {image ? (
         <Box
           {...imageProps}
           data-testid={testIds?.image}
@@ -132,7 +132,7 @@ function RcSesCard({
         >
           {image}
         </Box>
-      )}
+      ) : null}
 
       <Stack
         {...headerProps}
@@ -176,7 +176,7 @@ function RcSesCard({
         )}
       </Stack>
 
-      {children != null && (
+      {children ? (
         <Box
           {...contentProps}
           data-testid={testIds?.content}
@@ -196,7 +196,7 @@ function RcSesCard({
         >
           {children}
         </Box>
-      )}
+      ) : null}
 
       {hasActions && (
         <Stack
